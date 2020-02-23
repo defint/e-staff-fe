@@ -29,4 +29,10 @@ export class EmployeeService {
       .get<IEmployee[]>(this.backendUrl, this.httpOptions)
       .pipe(catchError(this.handleError<IEmployee[]>("getEmployeeList", [])));
   }
+
+  deleteEmployee(id: number): Observable<void> {
+    return this.http
+      .delete<void>(`${this.backendUrl}/${id}`, this.httpOptions)
+      .pipe(catchError(this.handleError<void>("deleteEmployee")));
+  }
 }
