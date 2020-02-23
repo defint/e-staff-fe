@@ -9,6 +9,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { DashboardModule } from "./dashboard/dashboard.module";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { EmployeeModule } from "./employee/employee.module";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -16,6 +17,7 @@ import { EmployeeModule } from "./employee/employee.module";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
     DashboardModule,
