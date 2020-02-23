@@ -3,6 +3,10 @@
 
     <h3 *ngIf="!dataSource || dataSource.data.length == 0">Empty employee list</h3>
 
+    <button mat-fab class="md-fab-bottom-right" routerLink="/employee/create">
+        <mat-icon>add</mat-icon>
+    </button>
+
     <div *ngIf="dataSource && dataSource.data.length > 0">
         <app-employee-list-filter (doFilter)="doFilter($event)"></app-employee-list-filter>
         <table mat-table matSort [dataSource]="dataSource"  class="mat-elevation-z4">

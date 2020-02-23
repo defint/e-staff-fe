@@ -4,6 +4,7 @@ import { DashboardPageComponent } from "./dashboard/dashboard-page/dashboard-pag
 import { EmployeeListComponent } from "./employee/employee-list/employee-list.component";
 import { EmployeeItemComponent } from "./employee/employee-item/employee-item.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
+import { EmployeeCreateComponent } from "./employee/employee-create/employee-create.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/dashboard", pathMatch: "full" },
@@ -12,6 +13,7 @@ const routes: Routes = [
     path: "employee",
     children: [
       { path: "", component: EmployeeListComponent },
+      { path: "create", component: EmployeeCreateComponent },
       { path: "item", component: EmployeeItemComponent }
     ]
   },

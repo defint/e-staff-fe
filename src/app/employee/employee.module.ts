@@ -12,6 +12,7 @@ import { MatChipsModule } from "@angular/material/chips";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
@@ -19,6 +20,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { PhonePipe } from "../pipes/phone.pipe";
 import { EmployeeListFilterComponent } from "./employee-list/employee-list-filter/employee-list-filter.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { EmployeeCreateComponent } from "./employee-create/employee-create.component";
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     EmployeeItemComponent,
     PhonePipe,
     EmployeeListFilterComponent,
-    EmployeeListDeleteDialogDialogComponent
+    EmployeeListDeleteDialogDialogComponent,
+    EmployeeCreateComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +45,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
   ]
 })
 export class EmployeeModule {}
