@@ -19,7 +19,7 @@ import { EmployeeModule } from "./employee/employee.module";
     MatToolbarModule,
     MatButtonModule,
     DashboardModule,
-    EmployeeModule,
+    EmployeeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
