@@ -3,6 +3,7 @@ import { IEmployee } from "../../interfaces/employee";
 import { EmployeeService } from "../../services/employee.service";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatSort } from "@angular/material/sort";
+import { IEmployeeFilter } from "../../interfaces/employeeFilter";
 
 @Component({
   selector: "app-employee-list",
@@ -28,5 +29,9 @@ export class EmployeeListComponent implements OnInit {
         this.dataSource.sort = this.sort;
       }, 0);
     });
+  }
+
+  doFilter(value: IEmployeeFilter) {
+    this.dataSource.filter = value.general;
   }
 }

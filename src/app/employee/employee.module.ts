@@ -6,16 +6,31 @@ import { RouterModule } from "@angular/router";
 import { MatTableModule } from "@angular/material/table";
 import { MatSortModule } from "@angular/material/sort";
 import { MatChipsModule } from "@angular/material/chips";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
 import { PhonePipe } from "../pipes/phone.pipe";
+import { EmployeeListFilterComponent } from "./employee-list/employee-list-filter/employee-list-filter.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
-  declarations: [EmployeeListComponent, EmployeeItemComponent, PhonePipe],
+  declarations: [
+    EmployeeListComponent,
+    EmployeeItemComponent,
+    PhonePipe,
+    EmployeeListFilterComponent
+  ],
   imports: [
     CommonModule,
     RouterModule,
     MatTableModule,
     MatChipsModule,
-    MatSortModule
+    MatSortModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class EmployeeModule {}

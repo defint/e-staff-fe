@@ -8,7 +8,7 @@ import { catchError } from "rxjs/operators";
   providedIn: "root"
 })
 export class EmployeeService {
-  private heroesUrl = "http://localhost:3000/employee";
+  private backendUrl = "http://localhost:3000/employee";
 
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
@@ -26,7 +26,7 @@ export class EmployeeService {
 
   getEmployeeList(): Observable<IEmployee[]> {
     return this.http
-      .get<IEmployee[]>(this.heroesUrl, this.httpOptions)
-      .pipe(catchError(this.handleError<IEmployee[]>("getHeroes", [])));
+      .get<IEmployee[]>(this.backendUrl, this.httpOptions)
+      .pipe(catchError(this.handleError<IEmployee[]>("getEmployeeList", [])));
   }
 }
