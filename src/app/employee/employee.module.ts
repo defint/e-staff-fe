@@ -46,7 +46,7 @@ import { EmployeeCreateComponent } from "./employee-create/employee-create.compo
     MatIconModule,
     MatButtonModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
   ]
 })
 export class EmployeeModule {}

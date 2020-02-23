@@ -1,0 +1,22 @@
+.page-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-form {
+    width: 320px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.save {
+    margin-left: 16px;
+}

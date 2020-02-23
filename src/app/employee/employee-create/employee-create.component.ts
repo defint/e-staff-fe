@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { PhoneValidator } from "../../pipes/phone.validator";
 import { IOffice } from "../../interfaces/office";
+import { Location } from "@angular/common";
 
 @Component({
   selector: "app-employee-create",
@@ -9,7 +10,7 @@ import { IOffice } from "../../interfaces/office";
   styleUrls: ["./employee-create.component.css"]
 })
 export class EmployeeCreateComponent implements OnInit {
-  constructor() {}
+  constructor(private location: Location) {}
 
   offices: IOffice[] = [{ id: 1, title: "Riga" }];
 
@@ -29,6 +30,10 @@ export class EmployeeCreateComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  goBack(): void {
+    this.location.back();
+  }
+
   hasError(name) {
     return (
       this.reactiveForm.controls[name].invalid &&
@@ -38,7 +43,6 @@ export class EmployeeCreateComponent implements OnInit {
   }
 
   getErrorMessage(name) {
-    console.log(this.reactiveForm.controls[name].errors);
     if (this.reactiveForm.controls[name].errors.required) {
       return "Field is required";
     }
@@ -63,6 +67,15 @@ export class EmployeeCreateComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.reactiveForm);
+    if (this.reactiveForm.valid) {
+      console.log("form submitted");
+    } else {
+      Object.keys(this.reactiveForm.controls).forEach(field => {
+        const control = this.reactiveForm.get(field);
+        if (control instanceof FormControl) {
+          control.markAsTouched({ onlySelf: true });
+        }
+      });
+    }
   }
 }
