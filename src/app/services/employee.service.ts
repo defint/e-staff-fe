@@ -31,19 +31,45 @@ export class EmployeeService {
       .pipe(catchError(this.handleError<IEmployee[]>("getEmployeeList", [])));
   }
 
+  getEmployee(id: string): Observable<IEmployee> {
+    return this.http
+      .get<IEmployee>(`${this.backendUrl}/${id}`, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<IEmployee>("getEmployee", {} as IEmployee))
+      );
+  }
+
   deleteEmployee(id: number): Observable<void> {
     return this.http
       .delete<void>(`${this.backendUrl}/${id}`, this.httpOptions)
       .pipe(catchError(this.handleError<void>("deleteEmployee")));
   }
 
-  createEmployee(employee): Observable<IEmployee> {
-    return this.http
-      .post<IEmployee>(
-        this.backendUrl,
-        { ...employee, phone: employee.phone.replace("+", "") },
-        this.httpOptions
-      )
-      .pipe(catchError(this.handleError<IEmployee>("createEmployee", {} as IEmployee)));
+  createOrUpdateEmployee(id, employee): Observable<IEmployee> {
+    const body = { ...employee, phone: employee.phone.replace("+", "") };
+
+    if (id) {
+      return this.http
+        .put<IEmployee>(`${this.backendUrl}/${id}`, body, this.httpOptions)
+        .pipe(
+          catchError(
+            this.handleError<IEmployee>(
+              "createOrUpdateEmployee",
+              {} as IEmployee
+            )
+          )
+        );
+    } else {
+      return this.http
+        .post<IEmployee>(this.backendUrl, body, this.httpOptions)
+        .pipe(
+          catchError(
+            this.handleError<IEmployee>(
+              "createOrUpdateEmployee",
+              {} as IEmployee
+            )
+          )
+        );
+    }
   }
 }

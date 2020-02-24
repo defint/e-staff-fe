@@ -1,6 +1,7 @@
 <div class="page-container">
     <div class="create-form">
-        <h1>Create new employee</h1>
+        <h1 *ngIf="employeeId">Edit employee: {{employeeId}}</h1>
+        <h1 *ngIf="!employeeId">Create new employee</h1>
         <form [formGroup]="reactiveForm" (ngSubmit)="submit()">
             <p>
                 <mat-form-field appearance="outline">
@@ -49,7 +50,7 @@
 
         </form>
         <div class="buttons">
-            <button mat-raised-button (click)="goBack()">Cancel</button>
+            <button mat-raised-button (click)="goBack()">Return to list</button>
             <button mat-raised-button color="primary" (click)="submit()" class="save">Save</button>
         </div>
     </div>

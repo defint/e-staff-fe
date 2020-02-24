@@ -6,7 +6,7 @@ import { Location } from "@angular/common";
 import { OfficeService } from "../../services/office.service";
 import { EmployeeService } from "../../services/employee.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-employee-create",
@@ -19,7 +19,8 @@ export class EmployeeCreateComponent implements OnInit {
     private officeService: OfficeService,
     private employeeService: EmployeeService,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   offices: IOffice[] = [];
@@ -38,8 +39,24 @@ export class EmployeeCreateComponent implements OnInit {
     ])
   });
 
+  employeeId: string;
+
   ngOnInit() {
     this.getOfficeList();
+
+    this.employeeId = this.route.snapshot.paramMap.get("id");
+    if (this.employeeId) {
+      this.getEmployee();
+    }
+  }
+
+  getEmployee(): void {
+    this.employeeService.getEmployee(this.employeeId).subscribe(employee => {
+      this.reactiveForm.controls.name.setValue(employee.name);
+      this.reactiveForm.controls.officeId.setValue(employee.office.id);
+      this.reactiveForm.controls.phone.setValue(`+${employee.phone}`);
+      this.reactiveForm.controls.age.setValue(employee.age);
+    });
   }
 
   getOfficeList(): void {
@@ -49,7 +66,7 @@ export class EmployeeCreateComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+    this.router.navigateByUrl("/employee");
   }
 
   hasError(name) {
@@ -87,10 +104,10 @@ export class EmployeeCreateComponent implements OnInit {
   submit() {
     if (this.reactiveForm.valid) {
       this.employeeService
-        .createEmployee(this.reactiveForm.value)
+        .createOrUpdateEmployee(this.employeeId, this.reactiveForm.value)
         .subscribe(employee => {
           this.snackBar.open(
-            employee.id ? "Employee has been created" : "Something went wrong",
+            employee.id ? "Employee has been updated" : "Something went wrong",
             null,
             {
               duration: 4000
