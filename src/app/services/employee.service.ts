@@ -3,12 +3,13 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { IEmployee } from "../interfaces/employee";
 import { catchError } from "rxjs/operators";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: "root"
 })
 export class EmployeeService {
-  private backendUrl = "http://localhost:3000/employee";
+  private backendUrl = `${environment.backendUrl}/employee`;
 
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
@@ -34,5 +35,15 @@ export class EmployeeService {
     return this.http
       .delete<void>(`${this.backendUrl}/${id}`, this.httpOptions)
       .pipe(catchError(this.handleError<void>("deleteEmployee")));
+  }
+
+  createEmployee(employee): Observable<IEmployee> {
+    return this.http
+      .post<IEmployee>(
+        this.backendUrl,
+        { ...employee, phone: employee.phone.replace("+", "") },
+        this.httpOptions
+      )
+      .pipe(catchError(this.handleError<IEmployee>("createEmployee", {} as IEmployee)));
   }
 }

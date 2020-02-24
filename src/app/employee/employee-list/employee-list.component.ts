@@ -5,6 +5,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { MatSort } from "@angular/material/sort";
 import { IEmployeeFilter } from "../../interfaces/employeeFilter";
 import { MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-employee-list",
@@ -26,6 +27,7 @@ export class EmployeeListComponent implements OnInit {
 
   constructor(
     private employeeService: EmployeeService,
+    private snackBar: MatSnackBar,
     public dialog: MatDialog
   ) {}
 
@@ -39,6 +41,9 @@ export class EmployeeListComponent implements OnInit {
 
       this.employeeService.deleteEmployee(id).subscribe(() => {
         this.getEmployeeList();
+        this.snackBar.open("Employee has been deleted", null, {
+          duration: 4000
+        });
       });
     });
   }

@@ -3,6 +3,9 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { PhoneValidator } from "../../pipes/phone.validator";
 import { IOffice } from "../../interfaces/office";
 import { Location } from "@angular/common";
+import { OfficeService } from "../../services/office.service";
+import { EmployeeService } from "../../services/employee.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-employee-create",
@@ -10,9 +13,14 @@ import { Location } from "@angular/common";
   styleUrls: ["./employee-create.component.css"]
 })
 export class EmployeeCreateComponent implements OnInit {
-  constructor(private location: Location) {}
+  constructor(
+    private location: Location,
+    private officeService: OfficeService,
+    private employeeService: EmployeeService,
+    private snackBar: MatSnackBar
+  ) {}
 
-  offices: IOffice[] = [{ id: 1, title: "Riga" }];
+  offices: IOffice[] = [];
 
   reactiveForm = new FormGroup({
     name: new FormControl("", [Validators.required]),
@@ -28,7 +36,15 @@ export class EmployeeCreateComponent implements OnInit {
     ])
   });
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.getOfficeList();
+  }
+
+  getOfficeList(): void {
+    this.officeService.getOfficeList().subscribe(offices => {
+      this.offices = offices;
+    });
+  }
 
   goBack(): void {
     this.location.back();
@@ -68,7 +84,17 @@ export class EmployeeCreateComponent implements OnInit {
 
   submit() {
     if (this.reactiveForm.valid) {
-      console.log("form submitted");
+      this.employeeService
+        .createEmployee(this.reactiveForm.value)
+        .subscribe(employee => {
+          this.snackBar.open(
+            employee.id ? "Employee has been created" : "Something went wrong",
+            null,
+            {
+              duration: 4000
+            }
+          );
+        });
     } else {
       Object.keys(this.reactiveForm.controls).forEach(field => {
         const control = this.reactiveForm.get(field);
