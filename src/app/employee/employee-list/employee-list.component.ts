@@ -6,6 +6,7 @@ import { MatSort } from "@angular/material/sort";
 import { IEmployeeFilter } from "../../interfaces/employeeFilter";
 import { MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-employee-list",
@@ -28,7 +29,8 @@ export class EmployeeListComponent implements OnInit {
   constructor(
     private employeeService: EmployeeService,
     private snackBar: MatSnackBar,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public router: Router
   ) {}
 
   openDeleteDialog(id: number) {
@@ -46,6 +48,10 @@ export class EmployeeListComponent implements OnInit {
         });
       });
     });
+  }
+
+  openEdit(id: number) {
+    this.router.navigateByUrl(`/employee/${id}`);
   }
 
   ngOnInit() {

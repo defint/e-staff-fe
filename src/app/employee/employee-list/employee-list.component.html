@@ -46,11 +46,7 @@
                         <mat-icon>more_vert</mat-icon>
                     </button>
                     <mat-menu #appMenu="matMenu">
-                        <button mat-menu-item>
-                            <mat-icon>more</mat-icon>
-                            Tags
-                        </button>
-                        <button mat-menu-item>
+                        <button mat-menu-item (click)="openEdit(element.id)">
                             <mat-icon>edit</mat-icon>
                             Edit
                         </button>

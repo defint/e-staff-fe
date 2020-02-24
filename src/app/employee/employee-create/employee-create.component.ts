@@ -6,6 +6,7 @@ import { Location } from "@angular/common";
 import { OfficeService } from "../../services/office.service";
 import { EmployeeService } from "../../services/employee.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-employee-create",
@@ -17,7 +18,8 @@ export class EmployeeCreateComponent implements OnInit {
     private location: Location,
     private officeService: OfficeService,
     private employeeService: EmployeeService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   offices: IOffice[] = [];
@@ -94,6 +96,12 @@ export class EmployeeCreateComponent implements OnInit {
               duration: 4000
             }
           );
+
+          if (employee.id) {
+            this.router.navigateByUrl(`/employee/${employee.id}`, {
+              replaceUrl: true
+            });
+          }
         });
     } else {
       Object.keys(this.reactiveForm.controls).forEach(field => {
