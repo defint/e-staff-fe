@@ -4,6 +4,7 @@ import { Observable, of } from "rxjs";
 import { IEmployee } from "../interfaces/employee";
 import { catchError } from "rxjs/operators";
 import { environment } from "../../environments/environment";
+import { ITag } from "../interfaces/tag";
 
 @Injectable({
   providedIn: "root"
@@ -71,5 +72,28 @@ export class EmployeeService {
           )
         );
     }
+  }
+
+  addTag(employeeId, tagLabel) {
+    const body = { label: tagLabel };
+
+    return this.http
+      .post<ITag>(
+        `${this.backendUrl}/${employeeId}/tag`,
+        body,
+        this.httpOptions
+      )
+      .pipe(catchError(this.handleError<ITag>("addTag", {} as ITag)));
+  }
+
+  deleteTag(employeeId, tagId) {
+    return this.http
+      .delete<IEmployee>(
+        `${this.backendUrl}/${employeeId}/tag/${tagId}`,
+        this.httpOptions
+      )
+      .pipe(
+        catchError(this.handleError<IEmployee>("deleteTag", {} as IEmployee))
+      );
   }
 }

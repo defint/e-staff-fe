@@ -21,6 +21,7 @@ import { PhonePipe } from "../pipes/phone.pipe";
 import { EmployeeListFilterComponent } from "./employee-list/employee-list-filter/employee-list-filter.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { EmployeeCreateComponent } from "./employee-create/employee-create.component";
+import { EmployeeTagComponent } from "./employee-tag/employee-tag.component";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { EmployeeCreateComponent } from "./employee-create/employee-create.compo
     PhonePipe,
     EmployeeListFilterComponent,
     EmployeeListDeleteDialogDialogComponent,
-    EmployeeCreateComponent
+    EmployeeCreateComponent,
+    EmployeeTagComponent
   ],
   imports: [
     CommonModule,

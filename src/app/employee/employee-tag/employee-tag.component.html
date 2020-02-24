@@ -1,0 +1,17 @@
+<div class="page-container">
+    <h3>Manage employee tags</h3>
+    <mat-form-field class="example-chip-list">
+        <mat-chip-list #chipList aria-label="Tags">
+            <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+                      [removable]="removable" (removed)="remove(tag)">
+                {{tag.label}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Tags"
+                   [matChipInputFor]="chipList"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   [matChipInputAddOnBlur]="addOnBlur"
+                   (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+    </mat-form-field>
+</div>
