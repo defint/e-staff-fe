@@ -5,6 +5,7 @@ import { IEmployee } from "../interfaces/employee";
 import { catchError } from "rxjs/operators";
 import { environment } from "../../environments/environment";
 import { ITag } from "../interfaces/tag";
+import { IStat } from "../interfaces/stat";
 
 @Injectable({
   providedIn: "root"
@@ -38,6 +39,12 @@ export class EmployeeService {
       .pipe(
         catchError(this.handleError<IEmployee>("getEmployee", {} as IEmployee))
       );
+  }
+
+  getStat(): Observable<IStat> {
+    return this.http
+      .get<IStat>(`${this.backendUrl}/stat`, this.httpOptions)
+      .pipe(catchError(this.handleError<IStat>("getEmployee", {} as IStat)));
   }
 
   deleteEmployee(id: number): Observable<void> {

@@ -22,4 +22,21 @@
 
 .row-item {
   margin: 1rem;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
 }
+
+span {
+  flex: 1;
+  text-align: center;
+}
+
+.row-title {
+  font-weight: 700;
+}
+
+.row-value {
+  font-size: 1.4rem;
+}
+

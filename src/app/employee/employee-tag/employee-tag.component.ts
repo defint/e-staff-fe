@@ -35,7 +35,7 @@ export class EmployeeTagComponent implements OnInit {
     const value = event.value;
 
     if ((value || "").trim()) {
-      this.employeeService.addTag(5, value.trim()).subscribe(tag => {
+      this.employeeService.addTag(this.employeeId, value.trim()).subscribe(tag => {
         this.tags.push(tag);
       });
     }
@@ -49,7 +49,7 @@ export class EmployeeTagComponent implements OnInit {
     const index = this.tags.indexOf(tag);
 
     if (index >= 0) {
-      this.employeeService.deleteTag(5, tag.id).subscribe(() => {
+      this.employeeService.deleteTag(this.employeeId, tag.id).subscribe(() => {
         this.tags.splice(index, 1);
       });
     }

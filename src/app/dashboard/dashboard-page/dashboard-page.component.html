@@ -1,32 +1,24 @@
 <div class="row">
     <div class="tile">
         <h3>Number of all employees</h3>
-        <h1>32443</h1>
+        <h1>{{stat.total}}</h1>
     </div>
 </div>
 
 
 <div class="row">
     <div class="tile">
-        <h3>Number of employees by country</h3>
-        <div class="row-item">
-            <span matBadge="4" matBadgeOverlap="false">Text with a badge</span>
-        </div>
-        <div>
-            <span matBadge="4" matBadgeOverlap="false">Text with a badge</span>
-        </div>
-
-        <div class="row-item">
-            <span matBadge="4" matBadgeOverlap="false">Text with a badge</span>
-        </div>
-        <div>
-            <span matBadge="4" matBadgeOverlap="false">Text with a badge</span>
+        <h3>Number of employees by office</h3>
+        <div class="row-item" *ngFor="let statItem of stat.offices">
+            <span class="row-title">{{statItem.title}}</span>
+            <span class="row-value">{{statItem.total}}</span>
         </div>
     </div>
     <div class="tile">
         <h3>Number of employees by tag</h3>
-        <div>
-            <span matBadge="4" matBadgeOverlap="false" matBadgeColor="accent">Text with a badge</span>
+        <div class="row-item" *ngFor="let statItem of stat.tags">
+            <span class="row-title">{{statItem.title}}</span>
+            <span class="row-value">{{statItem.total}}</span>
         </div>
     </div>
 </div>
