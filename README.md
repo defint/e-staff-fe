@@ -1,6 +1,6 @@
 # EStaffFe
 
-## Installation backend
+## Installation frontend
 
 ```bash
 $ npm i
