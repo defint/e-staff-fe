@@ -19,6 +19,7 @@ export class DashboardPageComponent implements OnInit {
   getStat(): void {
     this.employeeService.getStat().subscribe(stat => {
       this.stat = stat;
+      this.stat.tags = this.stat.tags.filter(tag => tag.total > 0);
     });
   }
 }
