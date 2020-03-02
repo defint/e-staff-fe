@@ -17,7 +17,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
-import { PhonePipe } from "../pipes/phone.pipe";
+import { PhonePipe } from "../helpers/phone.pipe";
 import { EmployeeListFilterComponent } from "./employee-list/employee-list-filter/employee-list-filter.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { EmployeeCreateComponent } from "./employee-create/employee-create.component";

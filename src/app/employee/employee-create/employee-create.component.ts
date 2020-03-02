@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { PhoneValidator } from "../../pipes/phone.validator";
+import { PhoneValidator } from "../../helpers/phone.validator";
 import { IOffice } from "../../interfaces/office";
 import { Location } from "@angular/common";
 import { OfficeService } from "../../services/office.service";
