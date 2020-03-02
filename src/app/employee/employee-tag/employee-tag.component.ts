@@ -3,6 +3,7 @@ import { COMMA, ENTER } from "@angular/cdk/keycodes";
 import { MatChipInputEvent } from "@angular/material/chips";
 import { ITag } from "../../interfaces/tag";
 import { EmployeeService } from "../../services/employee.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-employee-tag",
@@ -18,7 +19,10 @@ export class EmployeeTagComponent implements OnInit {
 
   @Input() employeeId: string;
 
-  constructor(private employeeService: EmployeeService) {}
+  constructor(
+    private employeeService: EmployeeService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit() {
     this.getEmployee();
@@ -32,11 +36,17 @@ export class EmployeeTagComponent implements OnInit {
 
   add(event: MatChipInputEvent): void {
     const input = event.input;
-    const value = event.value;
+    const value = (event.value || "").trim();
 
-    if ((value || "").trim()) {
-      this.employeeService.addTag(this.employeeId, value.trim()).subscribe(tag => {
-        this.tags.push(tag);
+    if (value) {
+      this.employeeService.addTag(this.employeeId, value).subscribe(tag => {
+        if (this.tags.some(currentTag => currentTag.id === tag.id)) {
+          this.snackBar.open("Tag already added", null, {
+            duration: 3000
+          });
+        } else {
+          this.tags.push(tag);
+        }
       });
     }
 
