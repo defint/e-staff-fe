@@ -1,24 +1,26 @@
-<div class="row">
-    <div class="tile">
-        <h3>Number of all employees</h3>
-        <h1>{{stat.total}}</h1>
-    </div>
-</div>
-
-
-<div class="row">
-    <div class="tile">
-        <h3>Number of employees by office</h3>
-        <div class="row-item" *ngFor="let statItem of stat.offices">
-            <span class="row-title">{{statItem.title}}</span>
-            <span class="row-value">{{statItem.total}}</span>
+<div *ngIf="stat">
+    <div class="row">
+        <div class="tile">
+            <h3>Number of all employees</h3>
+            <h1>{{stat.total}}</h1>
         </div>
     </div>
-    <div class="tile">
-        <h3>Number of employees by tag</h3>
-        <div class="row-item" *ngFor="let statItem of stat.tags">
-            <span class="row-title">{{statItem.title}}</span>
-            <span class="row-value">{{statItem.total}}</span>
+
+
+    <div class="row">
+        <div class="tile">
+            <h3>Number of employees by office</h3>
+            <div class="row-item" *ngFor="let statItem of stat.offices">
+                <span class="row-title">{{statItem.title}}</span>
+                <span class="row-value">{{statItem.total}}</span>
+            </div>
+        </div>
+        <div class="tile">
+            <h3>Number of employees by tag</h3>
+            <div class="row-item" *ngFor="let statItem of stat.tags">
+                <span class="row-title">{{statItem.title}}</span>
+                <span class="row-value">{{statItem.total}}</span>
+            </div>
         </div>
     </div>
 </div>
