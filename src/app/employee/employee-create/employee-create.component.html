@@ -46,13 +46,11 @@
                     </mat-error>
                 </mat-form-field>
             </p>
-
-
+            <div class="buttons">
+                <button mat-raised-button (click)="goBack()" type="button">Return to list</button>
+                <button mat-raised-button color="primary" (click)="submit()" class="save" type="submit">Save</button>
+            </div>
         </form>
-        <div class="buttons">
-            <button mat-raised-button (click)="goBack()">Return to list</button>
-            <button mat-raised-button color="primary" (click)="submit()" class="save">Save</button>
-        </div>
     </div>
 </div>
 
