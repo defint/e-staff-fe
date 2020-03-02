@@ -76,6 +76,14 @@ export class EmployeeListComponent implements OnInit {
 
       setTimeout(() => {
         this.dataSource.sort = this.sort;
+        this.dataSource.sortingDataAccessor = (item: IEmployee, property) => {
+          switch (property) {
+            case "office":
+              return item.office.title;
+            default:
+              return item[property];
+          }
+        };
       }, 0);
     });
   }
