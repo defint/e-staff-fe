@@ -23,6 +23,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { EmployeeCreateComponent } from "./employee-create/employee-create.component";
 import { EmployeeTagComponent } from "./employee-tag/employee-tag.component";
 import { AutofocusDirective } from "../helpers/autofocus.derective";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { AutofocusDirective } from "../helpers/autofocus.derective";
     MatButtonModule,
     MatDialogModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class EmployeeModule {}

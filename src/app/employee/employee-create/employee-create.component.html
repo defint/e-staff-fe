@@ -15,10 +15,12 @@
 
             <p>
                 <mat-form-field appearance="outline">
-                    <mat-label>Age</mat-label>
-                    <input matInput type="number" formControlName="age" required>
-                    <mat-error *ngIf="hasError('age')" class="alert alert-danger">
-                        {{ getErrorMessage('age') }}
+                    <mat-label>Date of birth</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="dob" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="hasError('dob')" class="alert alert-danger">
+                        {{ getErrorMessage('dob') }}
                     </mat-error>
                 </mat-form-field>
             </p>
@@ -48,7 +50,7 @@
             </p>
             <div class="buttons">
                 <button mat-raised-button (click)="goBack()" type="button">Return to list</button>
-                <button mat-raised-button color="primary" (click)="submit()" class="save" type="submit">Save</button>
+                <button mat-raised-button color="primary" class="save" type="submit">Save</button>
             </div>
         </form>
     </div>

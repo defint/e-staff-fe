@@ -4,7 +4,7 @@ import { ITag } from "./tag";
 export interface IEmployee {
   id: number;
   name: string;
-  age: number;
+  dob: string;
   phone: string;
   office: IOffice;
   tags: ITag[];

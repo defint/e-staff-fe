@@ -7,6 +7,7 @@ import { IEmployeeFilter } from "../../interfaces/employeeFilter";
 import { MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
+import { getAge } from "../../helpers/dob.validator";
 
 @Component({
   selector: "app-employee-list",
@@ -58,6 +59,10 @@ export class EmployeeListComponent implements OnInit {
     this.getEmployeeList();
   }
 
+  formatAge(str) {
+    return Math.max(0, getAge(str));
+  }
+
   prepareFilterString = (str: string) => str.trim().toLowerCase();
 
   strIncludes = (str1: string, str2: string) =>
@@ -70,7 +75,7 @@ export class EmployeeListComponent implements OnInit {
       this.dataSource.filterPredicate = (item: IEmployee, filter) =>
         this.strIncludes(item.name, filter) ||
         this.strIncludes(item.phone, filter) ||
-        item.age.toString() === filter ||
+        this.strIncludes(item.dob, filter) ||
         this.strIncludes(item.office.title, filter) ||
         item.tags.some(tag => this.strIncludes(tag.label, filter));
 

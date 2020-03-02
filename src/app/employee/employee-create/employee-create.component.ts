@@ -7,6 +7,7 @@ import { OfficeService } from "../../services/office.service";
 import { EmployeeService } from "../../services/employee.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
+import { DOBValidator } from "../../helpers/dob.validator";
 
 @Component({
   selector: "app-employee-create",
@@ -32,10 +33,10 @@ export class EmployeeCreateComponent implements OnInit {
       Validators.required,
       PhoneValidator.validCountryPhone()
     ]),
-    age: new FormControl(30, [
+    dob: new FormControl("", [
       Validators.required,
-      Validators.min(18),
-      Validators.max(100)
+      DOBValidator.validMin(),
+      DOBValidator.validMax()
     ])
   });
 
@@ -55,7 +56,7 @@ export class EmployeeCreateComponent implements OnInit {
       this.reactiveForm.controls.name.setValue(employee.name);
       this.reactiveForm.controls.officeId.setValue(employee.office.id);
       this.reactiveForm.controls.phone.setValue(`+${employee.phone}`);
-      this.reactiveForm.controls.age.setValue(employee.age);
+      this.reactiveForm.controls.dob.setValue(employee.dob);
     });
   }
 
@@ -82,16 +83,12 @@ export class EmployeeCreateComponent implements OnInit {
       return "Field is required";
     }
 
-    if (this.reactiveForm.controls[name].errors.min) {
-      return `Minimal age is ${
-        this.reactiveForm.controls[name].errors.min.min
-      }`;
+    if (this.reactiveForm.controls[name].errors.dobMin) {
+      return `Minimal age is 18`;
     }
 
-    if (this.reactiveForm.controls[name].errors.max) {
-      return `Maximal age is ${
-        this.reactiveForm.controls[name].errors.max.max
-      }`;
+    if (this.reactiveForm.controls[name].errors.dobMax) {
+      return `Maximal age is 70`;
     }
 
     if (this.reactiveForm.controls[name].errors.invalidCountryPhone) {

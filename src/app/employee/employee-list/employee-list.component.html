@@ -17,7 +17,7 @@
 
             <ng-container matColumnDef="age">
                 <th mat-header-cell mat-sort-header="age" *matHeaderCellDef> Age </th>
-                <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+                <td mat-cell *matCellDef="let element"> {{this.formatAge(element.dob)}} </td>
             </ng-container>
 
             <ng-container matColumnDef="phone">
