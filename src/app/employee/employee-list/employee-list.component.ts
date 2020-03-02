@@ -58,9 +58,22 @@ export class EmployeeListComponent implements OnInit {
     this.getEmployeeList();
   }
 
+  prepareFilterString = (str: string) => str.trim().toLowerCase();
+
+  strIncludes = (str1: string, str2: string) =>
+    this.prepareFilterString(str1).includes(this.prepareFilterString(str2))
+
   getEmployeeList(): void {
     this.employeeService.getEmployeeList().subscribe(employees => {
       this.dataSource = new MatTableDataSource<IEmployee>(employees);
+
+      this.dataSource.filterPredicate = (item: IEmployee, filter) =>
+        this.strIncludes(item.name, filter) ||
+        this.strIncludes(item.phone, filter) ||
+        item.age.toString() === filter ||
+        this.strIncludes(item.office.title, filter) ||
+        item.tags.some(tag => this.strIncludes(tag.label, filter));
+
       setTimeout(() => {
         this.dataSource.sort = this.sort;
       }, 0);
