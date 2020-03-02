@@ -6,7 +6,7 @@ import { NotFoundComponent } from "./not-found/not-found.component";
 import { EmployeeCreateComponent } from "./employee/employee-create/employee-create.component";
 
 const routes: Routes = [
-  { path: "", redirectTo: "/dashboard", pathMatch: "full" },
+  { path: "", redirectTo: "/employee", pathMatch: "full" },
   { path: "dashboard", component: DashboardPageComponent },
   {
     path: "employee",
