@@ -22,6 +22,7 @@ import { EmployeeListFilterComponent } from "./employee-list/employee-list-filte
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { EmployeeCreateComponent } from "./employee-create/employee-create.component";
 import { EmployeeTagComponent } from "./employee-tag/employee-tag.component";
+import { AutofocusDirective } from "../helpers/autofocus.derective";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { EmployeeTagComponent } from "./employee-tag/employee-tag.component";
     EmployeeListFilterComponent,
     EmployeeListDeleteDialogDialogComponent,
     EmployeeCreateComponent,
-    EmployeeTagComponent
+    EmployeeTagComponent,
+    AutofocusDirective
   ],
   imports: [
     CommonModule,
